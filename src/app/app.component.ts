@@ -6,7 +6,6 @@ export class Employee {
   title: string;
 
 }
-
 @Component({
   selector: 'my-app',
   template: `
@@ -14,7 +13,6 @@ export class Employee {
     <h2>{{employee.name}}</h2>
   `,
 })
-
 export class AppComponent {
   title = 'Software Engineering Manager';
   name = 'Marcelo Salvador';
