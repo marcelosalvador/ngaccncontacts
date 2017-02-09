@@ -6,19 +6,27 @@ export class Employee {
   title: string;
 
 }
+
+const EMPLOYEES: Employee[] = [
+  {id:1, name:'Marcelo Salvador', title: 'Software Engineering Manager'},
+  {id:2, name:'Marcio Salvador',  title: 'Software Engineering Associate Manager'}
+
+];
+
 @Component({
   selector: 'my-app',
   template: `
-    <h1>Hello {{employee.title}}</h1>
-    <h2>{{employee.name}}</h2>
+    <h2> Employees </h2>
+    <ul class="employees">
+      <li *ngFor="let employee of employees "> <!-- Take each employee in the employees array --.
+        <!-- each employee goes here -->
+        <span class="badge">{{employee.id}}</span> {{employee.name}}
+      </li>
+    <ul>
   `,
 })
 export class AppComponent {
   title = 'Software Engineering Manager';
   name = 'Marcelo Salvador';
-  employee: Employee = {
-    id: 1,
-    name: 'Marcelo Salvador',
-    title: 'Software Engineering Manager'
-  }
+  employees = EMPLOYEES;
 }
