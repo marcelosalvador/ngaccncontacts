@@ -16,13 +16,19 @@ const EMPLOYEES: Employee[] = [
 @Component({
   selector: 'my-app',
   template: `
-    <h2> Employees </h2>
+    <h2> Employees > </h2>
     <ul class="employees">
-      <li *ngFor="let employee of employees "> <!-- Take each employee in the employees array --.
+      <li *ngFor="let employee of employees"  [class.selected]="employee === selectedEmployee" (click)="onSelect(employee)"> <!-- Take each employee in the employees array and passing the employee input variable as an argument -->
         <!-- each employee goes here -->
         <span class="badge">{{employee.id}}</span> {{employee.name}}
       </li>
     <ul>
+    <!-- keep details out of the DOM until there is a selected employee -->
+    <div *ngIf="selectedEmployee">
+      <h2>{{selectedEmployee.name}} address!</h2>
+      <div><label>id: </label>{{selectedEmployee.id}}</div>
+      <div><label>name: </label>{{selectedEmployee.name}}</div>
+    </div>
   `,
   styles: [`
   .selected {
@@ -76,6 +82,10 @@ const EMPLOYEES: Employee[] = [
 })
 export class AppComponent {
   title = 'Software Engineering Manager';
-  name = 'Marcelo Salvador';
   employees = EMPLOYEES;
+  selectedEmployee: Employee;
+
+  onSelect(employee: Employee): void {
+    this.selectedEmployee = employee;
+  }
 }
