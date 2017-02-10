@@ -1,11 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Employee } from './employee';
+import { EmployeeService } from './employee.service';
 
-const EMPLOYEES: Employee[] = [
-  {id:1, name:'Marcelo Salvador', title: 'Software Engineering Manager'},
-  {id:2, name:'Marcio Salvador',  title: 'Software Engineering Associate Manager'}
-
-];
 
 @Component({
   selector: 'my-app',
@@ -68,12 +64,24 @@ const EMPLOYEES: Employee[] = [
     margin-right: .8em;
     border-radius: 4px 0 0 4px;
   }
-`]
+`],
+providers: [EmployeeService]
 })
-export class AppComponent {
+
+export class AppComponent implements OnInit {
   title = 'Software Engineering Manager';
-  employees = EMPLOYEES;
+  employees : Employee[];
   selectedEmployee: Employee;
+
+  constructor(private employeeService: EmployeeService) {}
+
+  getEmployees() : void {
+    this.employeeService.getEmployees().then(employees => this.employees = employees);
+  }
+
+  ngOnInit(): void {
+    this.getEmployees();
+  }
 
   onSelect(employee: Employee): void {
     this.selectedEmployee = employee;
