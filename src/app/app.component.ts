@@ -4,10 +4,11 @@ import { Component } from '@angular/core';
   selector: 'my-app',
   template:`
     <h1>{{title}}</h1>
-    <my-employees></my-employees>
+    <a routerLink="/employees">Employees</a>
+    <router-outlet></router-outlet>
   `
   })
 
   export class AppComponent {
-    title = `Tour of Heroes`;
+    title = `Employees >`;
   }
