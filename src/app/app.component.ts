@@ -1,11 +1,5 @@
 import { Component } from '@angular/core';
-
-export class Employee {
-  id: number;
-  name: string;
-  title: string;
-
-}
+import { Employee } from './employee';
 
 const EMPLOYEES: Employee[] = [
   {id:1, name:'Marcelo Salvador', title: 'Software Engineering Manager'},
@@ -24,11 +18,7 @@ const EMPLOYEES: Employee[] = [
       </li>
     <ul>
     <!-- keep details out of the DOM until there is a selected employee -->
-    <div *ngIf="selectedEmployee">
-      <h2>{{selectedEmployee.name}} address!</h2>
-      <div><label>id: </label>{{selectedEmployee.id}}</div>
-      <div><label>name: </label>{{selectedEmployee.name}}</div>
-    </div>
+    <my-employee-detail [employee]="selectedEmployee"></my-employee-detail>
   `,
   styles: [`
   .selected {
