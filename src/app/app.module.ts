@@ -1,48 +1,25 @@
-import { NgModule }      from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule }   from '@angular/forms';
-import { RouterModule } from '@angular/router';
-
-import { AppComponent }  from './app.component';
-import { EmployeeDetailComponent } from './employee-detail.component';
-import { EmployeesComponent } from './employees.component';
-import { DashboardComponent } from './dashboard.component';
-import { EmployeeService } from './employee.service';
-
-
+import { NgModule }       from '@angular/core';
+import { BrowserModule }  from '@angular/platform-browser';
+import { FormsModule }    from '@angular/forms';
+import { AppComponent }         from './app.component';
+import { DashboardComponent }   from './dashboard.component';
+import { EmployeeDetailComponent }  from './employee-detail.component';
+import { EmployeesComponent }      from './employees.component';
+import { EmployeeService }          from './employee.service';
+import { AppRoutingModule }     from './app-routing.module';
 @NgModule({
-  imports:      [
+  imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        redirectTo: '/dashboard',
-        pathMatch: 'full'
-      },
-      {
-        path: 'employees',
-        component: EmployeesComponent
-      },
-      {
-        path: 'dashboard',
-        component: DashboardComponent
-      },
-      {
-        path: 'detail/:id',
-        component: EmployeeDetailComponent
-      }
-    ])
+    AppRoutingModule
   ],
   declarations: [
-    AppComponent ,
+    AppComponent,
     DashboardComponent,
     EmployeeDetailComponent,
     EmployeesComponent
-    ],
-    providers: [
-     EmployeeService
-    ],
-  bootstrap:    [ AppComponent ]
+  ],
+  providers: [ EmployeeService ],
+  bootstrap: [ AppComponent ]
 })
 export class AppModule { }
