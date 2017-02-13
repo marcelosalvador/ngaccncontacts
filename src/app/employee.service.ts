@@ -8,4 +8,8 @@ import { EMPLOYEES} from './mock-employees';
   getEmployees(): Promise<Employee[]>{
     return Promise.resolve(EMPLOYEES);
   }
+  getEmployee(id: number): Promise<Employee> {
+    return this.getEmployees()
+               .then(employees => employees.find(employee => employee.id === id));
+  }
 }
