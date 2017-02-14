@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
+import { Headers, Http } from '@angular/http';
+import 'rxjs/add/operator/toPromise';
 
 import { Employee } from './employee';
-import { EMPLOYEES} from './mock-employees';
+
 
 @Injectable()
   export class EmployeeService{
-  getEmployees(): Promise<Employee[]>{
-    return Promise.resolve(EMPLOYEES);
+
+  private employeesUrl = '/api/employees';
+
+  constructor(private http: Http){}
+
+  getEmployees(): Promise<Employee[]> {
+    return this.http.get(this.employeesUrl)
+               .toPromise()
+               .then(response => response.json().data as Employee[])
+               .catch(this.handleError);
+
   }
   getEmployee(id: number): Promise<Employee> {
-    return this.getEmployees()
-               .then(employees => employees.find(employee => employee.id === id));
-  }
+      return this.getEmployees()
+                 .then(employees => employees.find(employee => employee.id === id));
+    }
 }
